@@ -1,4 +1,4 @@
-import { pool } from "../config/database";
+const { pool } = require("../config/database");
 const bcrypt = require("bcrypt");
 
 const createUserTable = async () => {

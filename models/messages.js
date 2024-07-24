@@ -1,4 +1,4 @@
-import { pool } from "../config/database";
+const { pool } = require("../config/database");
 
 const createMessageTable = async () => {
   const query = `CREATE TABLE IF NOT EXISTS messages (
