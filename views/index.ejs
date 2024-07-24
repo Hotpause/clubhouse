@@ -1,0 +1,9 @@
+<h2>Welcome to the Clubhouse</h2>
+<% if (user) { %>
+<p>Welcome, <%= user.first_name %>!</p>
+<% } else { %>
+<p>
+  Please <a href="/auth/login">login</a> or
+  <a href="/auth/signup">sign up</a> to continue.
+</p>
+<% } %>

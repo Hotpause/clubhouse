@@ -31,7 +31,7 @@ app.use(
 
 app.use(passport.session());
 
-// app.use("/", indexRoutes);
+app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 
 createUserTable();
