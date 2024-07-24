@@ -2,8 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-
-const { addUser } = require("../models/users");
+const router = express.Router();
+const { addUser } = require("../models/user");
 
 const validateCredentials = [
   body("firstName")
@@ -25,10 +25,8 @@ const validateCredentials = [
     .withMessage("Passwords do not match"),
 ];
 
-const router = express.Router();
-
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signup", { errors: [], error: null });
 });
 
 router.post(
@@ -39,14 +37,15 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).render("signup", {
         errors: errors.array(),
+        error: null,
       });
     }
     const { firstName, lastName, username, password } = req.body;
     try {
-      await addUser({ firstName, lastName, username, password });
+      await addUser(firstName, lastName, username, password);
       res.redirect("/auth/login");
     } catch (error) {
-      res.render("signup", { error: "Error creating user" });
+      res.render("signup", { errors: [], error: error });
     }
   })
 );
