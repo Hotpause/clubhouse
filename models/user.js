@@ -22,10 +22,16 @@ const addUser = async (firstName, lastName, username, password) => {
   return result.rows[0];
 };
 
+const findUserById = async (id) => {
+  const query = `SELECT * FROM users WHERE id = $1;`;
+  const result = await pool.query(query, [id]);
+  return result.rows[0];
+};
+
 const findUserByUsername = async (username) => {
   const query = `SELECT * FROM users WHERE username = $1;`;
   const result = await pool.query(query, [username]);
   return result.rows[0];
 };
 
-module.exports = { createUserTable, addUser, findUserByUsername };
+module.exports = { createUserTable, addUser, findUserById, findUserByUsername };
