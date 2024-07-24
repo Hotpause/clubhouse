@@ -84,4 +84,13 @@ router.post("/join", async (req, res) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
+
 module.exports = router;

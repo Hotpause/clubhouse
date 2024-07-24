@@ -1,0 +1,15 @@
+<nav>
+  <a href="/">Home</a>
+  <% if (user) { %>
+  <a href="/message/create">Create a New Message</a>
+  <a href="/auth/logout">Logout</a>
+  <span>Welcome, <%= user.first_name %> <%= user.last_name %>!</span>
+  <% if (user.membership_status) { %>
+  <span>(Member)</span>
+  <% } else { %>
+  <a href="/auth/join">Join the Club</a>
+  <% } %> <% } else { %>
+  <a href="/auth/login">Login</a>
+  <a href="/auth/signup">Sign Up</a>
+  <% } %>
+</nav>
