@@ -1,5 +1,5 @@
 const express = require("express");
-const { addMessage, getAllMessages } = require("../models/messages");
+const { addMessage, getAllMessages } = require("../models/message");
 
 const router = express.Router();
 

@@ -24,7 +24,9 @@ const addMessage = async (title, text, userId) => {
 };
 
 const getAllMessages = async () => {
-  const query = `SELECT * FROM messages`;
+  const query = `SELECT messages.id, messages.title, messages.text, messages.timestamp, users.first_name, users.last_name
+  FROM messages
+  JOIN users ON messages.user_id = users.id;`;
   const result = await pool.query(query);
   return result.rows;
 };
