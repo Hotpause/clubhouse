@@ -1,14 +1,29 @@
 <%- include('layout', { user: user }) %>
-<h2>Messages</h2>
-<% if (!user) { %>
-<a href="/auth/login">Login</a>
-<a href="/auth/signup">Sign Up</a>
+
+<h2 class="text-2xl font-bold mb-4">Messages</h2>
+<% if (user) { %>
+<a href="/message/create" class="text-blue-500 hover:underline"
+  >Create a New Message</a
+>
 <% } %>
-<ul>
+<ul class="space-y-4">
   <% messages.forEach(message => { %>
-  <li>
-    <h3><%= message.title %></h3>
-    <p><%= message.text %></p>
+  <li class="bg-white p-4 rounded shadow">
+    <h3 class="text-xl font-semibold"><%= message.title %></h3>
+    <p class="mb-2"><%= message.text %></p>
+    <% if (user && user.membership_status) { %>
+    <p class="text-gray-600">By: <%= message.first_name %></p>
+    <p class="text-gray-600">On: <%= message.timestamp %></p>
+    <% } %> <% if (user && user.is_admin) { %>
+    <form action="/message/delete/<%= message.id %>" method="post" class="mt-2">
+      <button
+        type="submit"
+        class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+      >
+        Delete
+      </button>
+    </form>
+    <% } %>
   </li>
   <% }) %>
 </ul>
