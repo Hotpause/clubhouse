@@ -1,0 +1,13 @@
+<%- include('layout', { user: user }) %>
+
+<h2>Join the Club</h2>
+<% if (error) { %>
+<p style="color: red"><%= error %></p>
+<% } %>
+<form action="/auth/join" method="post">
+  <div>
+    <label for="passcode">Enter Passcode</label>
+    <input type="text" id="passcode" name="passcode" required />
+  </div>
+  <button type="submit">Join</button>
+</form>

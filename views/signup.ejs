@@ -1,47 +1,45 @@
-<html>
-  <body>
-    <h1>welcome to signup page</h1>
-    <div>
-      <%if (errors){%>
-      <ul>
-        <%errors.forEach(err=>{%>
-        <li style="color: red"><%=err.msg%></li>
-        <%})%>
-      </ul>
-      <%}%>
-    </div>
-    <div>
-      <% if (error) { %>
-      <p style="color: red"><%= error %></p>
-      <% } %>
-    </div>
-    <form action="/auth/signup" method="post">
-      <div>
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required />
-      </div>
-      <div>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required />
-      </div>
-      <div>
-        <label for="username">Username (Email)</label>
-        <input type="email" id="username" name="username" required />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required />
-      </div>
-      <div>
-        <label for="confirmPassword">Confirm Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          required
-        />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
-  </body>
-</html>
+<%- include('layout', { user: user }) %>
+
+<h1>welcome to signup page</h1>
+<div>
+  <%if (errors){%>
+  <ul>
+    <%errors.forEach(err=>{%>
+    <li style="color: red"><%=err.msg%></li>
+    <%})%>
+  </ul>
+  <%}%>
+</div>
+<div>
+  <% if (error) { %>
+  <p style="color: red"><%= error %></p>
+  <% } %>
+</div>
+<form action="/auth/signup" method="post">
+  <div>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" required />
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" required />
+  </div>
+  <div>
+    <label for="username">Username (Email)</label>
+    <input type="email" id="username" name="username" required />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <div>
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      name="confirmPassword"
+      required
+    />
+  </div>
+  <button type="submit">Sign Up</button>
+</form>

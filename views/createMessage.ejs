@@ -1,0 +1,14 @@
+<%- include('layout', { user: user }) %>
+
+<h2>Create Message</h2>
+<form action="/message/create" method="post">
+  <div>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" required />
+  </div>
+  <div>
+    <label for="text">Message</label>
+    <textarea id="text" name="text" required></textarea>
+  </div>
+  <button type="submit">Create</button>
+</form>

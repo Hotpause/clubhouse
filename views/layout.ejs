@@ -2,18 +2,28 @@
 <html>
   <head>
     <title>Clubhouse</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
   <body>
     <header>
       <h1>Clubhouse</h1>
       <% if (user) { %>
-      <a href="/auth/logout">Logout</a>
-      <a href="/createMessage">Create Message</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/message/create">Create a New Message</a>
+        <a href="/auth/logout">Logout</a>
+      </nav>
       <% } else { %>
-      <a href="/auth/login">Login</a>
-      <a href="/auth/signup">Sign Up</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/signup">Sign Up</a>
+      </nav>
       <% } %>
     </header>
     <main><%- body %></main>
+    <footer>
+      <p>&copy; 2024 Clubhouse</p>
+    </footer>
   </body>
 </html>

@@ -3,7 +3,7 @@ const passport = require("passport");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
-const { addUser } = require("../models/user");
+const { addUser, updateUserMembership } = require("../models/user");
 
 const validateCredentials = [
   body("firstName")
@@ -54,10 +54,6 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
-
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -65,5 +61,27 @@ router.post(
     failureRedirect: "/auth/login",
   })
 );
+
+router.get("/join", (req, res) => {
+  if (req.isUnauthenticated()) {
+    return res.redirect("/auth/login");
+  }
+  res.render("join", { user: req.user, error: null });
+});
+
+router.post("/join", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/auth/login");
+  }
+  const { passcode } = req.body;
+  const secretPasscode = "liya";
+
+  if (passcode === secretPasscode) {
+    await updateUserMembership(req.user.id);
+    res.redirect("/");
+  } else {
+    res.render("join", { user: req.user, error: "Incorrect passcode" });
+  }
+});
 
 module.exports = router;

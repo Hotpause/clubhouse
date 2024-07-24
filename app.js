@@ -4,8 +4,10 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const { pool } = require("./config/database");
 const { createUserTable } = require("./models/user");
+const { createMessageTable } = require("./models/messages");
 const authRoutes = require("./routes/auth");
 const indexRoutes = require("./routes/index");
+const messageRoutes = require("./routes/message");
 const path = require("path");
 
 const app = express();
@@ -33,8 +35,10 @@ app.use(passport.session());
 
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
+app.use("/message", messageRoutes);
 
 createUserTable();
+createMessageTable();
 
 const PORT = process.env.PORT || 3300;
 app.listen(PORT, () => {

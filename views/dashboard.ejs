@@ -1,15 +1,16 @@
 <%- include('layout', { user: user }) %>
 
 <h2>Messages</h2>
-<% if (!user) { %>
-<a href="/auth/login">Login</a>
-<a href="/auth/signup">Sign Up</a>
+<% if (user) { %>
+<a href="/message/create">Create a New Message</a>
 <% } %>
 <ul>
   <% messages.forEach(message => { %>
   <li>
     <h3><%= message.title %></h3>
     <p><%= message.text %></p>
+    <p>By: <%= message.user_id %></p>
+    <p>On: <%= message.timestamp %></p>
   </li>
   <% }) %>
 </ul>

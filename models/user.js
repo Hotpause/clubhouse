@@ -34,4 +34,21 @@ const findUserByUsername = async (username) => {
   return result.rows[0];
 };
 
-module.exports = { createUserTable, addUser, findUserById, findUserByUsername };
+const updateUserMembership = async (userId) => {
+  const query = `
+    UPDATE users
+    SET membership_status = TRUE
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const result = await pool.query(query, [userId]);
+  return result.rows[0];
+};
+
+module.exports = {
+  createUserTable,
+  addUser,
+  findUserById,
+  findUserByUsername,
+  updateUserMembership,
+};
