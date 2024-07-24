@@ -1,4 +1,5 @@
 <%- include('layout', { user: user }) %>
+
 <h2>Messages</h2>
 <% if (user) { %>
 <a href="/message/create">Create a New Message</a>
@@ -8,8 +9,10 @@
   <li>
     <h3><%= message.title %></h3>
     <p><%= message.text %></p>
+    <% if (user && user.membership_status) { %>
     <p>By: <%= message.first_name %></p>
     <p>On: <%= message.timestamp %></p>
+    <% } %>
   </li>
   <% }) %>
 </ul>
