@@ -40,9 +40,9 @@ router.post(
         error: null,
       });
     }
-    const { firstName, lastName, username, password } = req.body;
+    const { firstName, lastName, username, password, isAdmin } = req.body;
     try {
-      await addUser(firstName, lastName, username, password);
+      await addUser(firstName, lastName, username, password, isAdmin === "on");
       res.redirect("/auth/login");
     } catch (error) {
       res.render("signup", { errors: [], error: error });

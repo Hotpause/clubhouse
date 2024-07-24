@@ -14,10 +14,16 @@ const createUserTable = async () => {
   await pool.query(query);
 };
 
-const addUser = async (firstName, lastName, username, password) => {
+const addUser = async (
+  firstName,
+  lastName,
+  username,
+  password,
+  isAdmin = false
+) => {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const query = `INSERT INTO users(first_name, last_name, username, password) VALUES ($1,$2,$3,$4) RETURNING *;`;
-  const values = [firstName, lastName, username, hashedPassword];
+  const query = `INSERT INTO users(first_name, last_name, username, password,is_admin) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
+  const values = [firstName, lastName, username, hashedPassword, isAdmin];
   const result = await pool.query(query, values);
   return result.rows[0];
 };

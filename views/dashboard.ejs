@@ -12,6 +12,10 @@
     <% if (user && user.membership_status) { %>
     <p>By: <%= message.first_name %></p>
     <p>On: <%= message.timestamp %></p>
+    <% } %> <% if (user && user.is_admin) { %>
+    <form action="/message/delete/<%= message.id %>" method="post">
+      <button type="submit">Delete</button>
+    </form>
     <% } %>
   </li>
   <% }) %>

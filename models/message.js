@@ -31,4 +31,15 @@ const getAllMessages = async () => {
   return result.rows;
 };
 
-module.exports = { createMessageTable, addMessage, getAllMessages };
+const deleteMessage = async (id) => {
+  const query = `DELETE FROM messages where id = $1`;
+  const values = [id];
+  const result = await pool.query(query, values);
+};
+
+module.exports = {
+  createMessageTable,
+  addMessage,
+  getAllMessages,
+  deleteMessage,
+};
