@@ -30,11 +30,15 @@ A Node.js application where members can post anonymously. Inside the clubhouse, 
    npm install
    ```
 
-3. Configure PostgreSQL and update the `.env` file
+3. Configure PostgreSQL and update the `.env` file with the correct username and password.
+   ```
+   DATABASE_URL=postgres://username:password@localhost:5432/clubhouse
+   ```
 
-4. Start the server
+
+5. Start the server
    ```
    node app.js
    ```
-5. Open your browser and go to `http://localhost:3300` or the PORT in `.env` to access the application.
+6. Open your browser and go to `http://localhost:3300` or the PORT in `.env` to access the application.
 
